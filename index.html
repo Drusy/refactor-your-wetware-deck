@@ -2,14 +2,14 @@
 <html>
     <head>
         <meta charset="utf-8">
-
         <title>Pragmatic Thinking & Learning - Refactor Your Wetware. | Kevin Renella</title>
 
         <link rel="stylesheet" href="revealjs/css/reveal.css">
-        <link rel="stylesheet" href="revealjs/css/theme/simple.css" id="theme">
+        <link rel="stylesheet" href="revealjs/css/theme/black.css" id="theme">
         <link rel="stylesheet" href="revealjs/lib/css/zenburn.css">
-
+        <link rel="stylesheet" href="plugin/title-footer/title-footer.css">
         <link rel="stylesheet" href="css/project.css">
+
         <script>
             if (window.location.search.match(/print-pdf/gi)) {
                 document.write('<link rel="stylesheet" href="css/pdf.css" type="text/css">');
@@ -23,9 +23,29 @@
     <body>
         <div class="reveal">
             <div class="slides">
+
+                <!-- Title -->
                 <section data-markdown>
                     <script type="text/template">
-                        ## Thank You.
+                        ## Refactor Your Wetware
+                        <blockquote><a href="http://blog.toolshed.com/">Andy Hunt</a> is co-founder of The Pragmatic Programmers, LLC, and is well known as a programmer, author, and publisher</blockquote>
+
+                    </script>
+                </section>
+
+                <!-- Mind Map -->
+                <section data-state="no-toc-progress" data-markdown data-background="images/mind-map.png">
+                </section>
+
+                <section data-markdown>
+                    <script type="text/template">
+                        ## Thank You
+                        <blockquote cite="">
+                        	“In the beginner's mind there are many possibilities, but in the expert's there are few.”<br />
+                             <footer class="quote-footer">
+                                 <cite><a href="">Shunryu Suzuki-Roshi</a></cite>
+                             </footer>
+                        </blockquote>
                     </script>
                 </section>
             </div>
@@ -34,11 +54,9 @@
         <script type="text/javascript" src="revealjs/js/reveal.js"></script>
         <script type="text/javascript">
             Reveal.initialize({
-                slideNumber: !window.location.search.match(/print-pdf/gi),
                 history: true,
+                transition: 'fade', // none/fade/slide/convex/concave/zoom
 
-                theme: Reveal.getQueryHash().theme,
-                transition: Reveal.getQueryHash().transition || 'concave',
                 dependencies: [
                     // Cross-browser shim that fully implements classList - https://github.com/eligrey/classList.js/
                     { src: 'revealjs/lib/js/classList.js', condition: function() { return !document.body.classList; } },
@@ -54,7 +72,10 @@
                     { src: 'revealjs/plugin/zoom-js/zoom.js', async: true },
 
                     // Speaker notes
-                    { src: 'revealjs/plugin/notes/notes.js', async: true }
+                    { src: 'revealjs/plugin/notes/notes.js', async: true },
+
+                    // Footer
+                    { src: 'plugin/title-footer/title-footer.js', async: true, callback: function() { title_footer.initialize("Pragmatic Thinking & Learning - Andy Hunt"); } }
                 ]
             });
         </script>
