@@ -27,7 +27,9 @@
                 <section data-markdown>
                     <script type="text/template">
                         ## Refactor Your Wetware
-                        <blockquote><a href="http://blog.toolshed.com/">Andy Hunt</a> is co-founder of The Pragmatic Programmers, LLC, and is well known as a programmer, author, and publisher</blockquote>
+                        <blockquote>
+                            <a href="http://blog.toolshed.com/">Andy Hunt</a> is co-founder of The Pragmatic Programmers, LLC, and is well known as a programmer, author, and publisher
+                        </blockquote>
                     </script>
                 </section>
 
@@ -36,11 +38,57 @@
                 </section>
 
                 <!-- Context switching -->
-                <section data-markdown>
-                    <script type="text/template">
-                        ## Context Switching is expensive
-                        <blockquote><a href="http://blog.toolshed.com/">Andy Hunt</a> is co-founder of The Pragmatic Programmers, LLC, and is well known as a programmer, author, and publisher</blockquote>
-                    </script>
+                <section>
+                    <section data-markdown>
+                        <script type="text/template">
+                            ## Context Switching is expensive
+                            <blockquote>
+                                Loss an instant 20 to 30 percent of productivity by context switching and dramatically increase error risks
+                            </blockquote>
+                        </script>
+                    </section>
+                    <section data-markdown>
+                        <script type="text/template">
+                            ## Better smoke a joint than read emails <img class="no-style" src="images/drug.png" width="50" height="50" />
+                            <iframe id="joint-email" style="margin:5px 5px auto auto;width:700px;height:700px" scrolling="no" data-chart></iframe>
+                        </script>
+                    </section>
+                    <section data-markdown>
+                        <script type="text/template">
+                            ## At work
+                            - <a>Schedule</a> your email conversations
+                            - <a>Never use</a> CMD/CTRL TAB
+                            - <a>Use</a> multi desktops arranges by tasks
+                            - <a>Use</a> multi monitors
+                        </script>
+                    </section>
+                    <section data-markdown>
+                        <script type="text/template">
+                            ## Use the right tools
+                            - <a href="https://heyfocus.com/">HeyFocus</a><br /><small>Block distractions & improve your productivity with Focus</small>
+                            - <a href="https://hazeover.com/fr/">Haze Hover</a><br /><small>Distraction dimmer</small>
+                            - <a href="http://foggynoggin.com/">Focus</a><br /><small>Remove distractions and get stuff done</small>
+                        </script>
+                    </section>
+                    <section data-markdown>
+                        <script type="text/template">
+                            ## Prepare to be interrupted
+                            You have few seconds, <br />
+                            leave yourself some "bread-crumbs" for yourself.
+
+                            <pre><code data-trim>
+                            void powerfulFunction()
+                            {
+                                for (Object item in items)
+                                {
+                                    // Compute the power of the item
+                                    // http://stackoverflow.com/...
+                                }
+                            }
+                            </code></pre>
+
+                        </script>
+                    </section>
                 </section>
 
                 <!-- Closing -->
@@ -60,9 +108,42 @@
         <script type="text/javascript" src="revealjs/lib/js/head.min.js"></script>
         <script type="text/javascript" src="revealjs/js/reveal.js"></script>
         <script type="text/javascript">
+        var jointEmail = [
+            {
+                selector : "#joint-email", // must be query like an id that points to the iframe
+                type : "polararea", // can be either of the following : line, bar, radar, polararea, pie, doughnut
+                data : [
+                    {
+                        value: 3,
+                        color:"#F7464A",
+                        highlight: "#FF5A5E",
+                        label: "Smoke a joint"
+                    },
+                    {
+                        value: 10,
+                        color: "#46BFBD",
+                        highlight: "#5AD3D1",
+                        label: "Check emails"
+                    }
+                ],
+                options : {
+                    responsive : true,
+                    //Number - The backdrop padding above & below the label in pixels
+   scaleBackdropPaddingY : 0,
+
+   //Number - The backdrop padding to the side of the label in pixels
+   scaleBackdropPaddingX : 5
+                }
+            }
+    ];
+
             Reveal.initialize({
                 history: true,
                 transition: 'fade', // none/fade/slide/convex/concave/zoom
+
+                chart : { // The option
+                    items : jointEmail // Some object
+                  },
 
                 dependencies: [
                     // Cross-browser shim that fully implements classList - https://github.com/eligrey/classList.js/
@@ -82,9 +163,19 @@
                     { src: 'revealjs/plugin/notes/notes.js', async: true },
 
                     // Footer
-                    { src: 'plugin/title-footer/title-footer.js', async: true, callback: function() { title_footer.initialize("Pragmatic Thinking & Learning - Andy Hunt"); } }
+                    { src: 'plugin/title-footer/title-footer.js', async: true, callback: function() { title_footer.initialize("Pragmatic Thinking & Learning - Andy Hunt"); } },
+
+                    //
+                    { src: 'plugin/chartjs/Chart.min.js'},
+                    { src: 'plugin/chartjs/charted.js'} // This is the plugin
                 ]
             });
+
+            Reveal.addEventListener("slidechanged",function(){
+                setTimeout(function(){
+                    Chart.defaults.global.responsive = true;
+                },500);
+            },false);
         </script>
 
     </body>
